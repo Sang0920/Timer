@@ -5,11 +5,24 @@ function handleForm(event) {
 }
 form.addEventListener('submit', handleForm);
 
-function startCountdown() {
+function startCountdown() {    
     /*Hide audio controls, source, and autoplay attributes until countdonwn time's finish.*/
     document.querySelector('#audio').setAttribute("src", "");
     document.querySelector('#audio').removeAttribute("autoplay");
     document.querySelector('#audio').removeAttribute("controls");
+
+    /**Show Timer icon */
+    document.getElementById('icon').setAttribute("href", "https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/timer/default/48px.svg");
+
+    var h = parseInt(document.querySelector('#hour').value);
+    var m = parseInt(document.querySelector('#minute').value);
+    var s = parseInt(document.querySelector('#sec').value);
+    
+    /**exeption */
+    if(isNaN(h) && isNaN(m) && isNaN(s)){
+        alert("Time can't be NULL, please check again!");
+        return;
+    }
 
     /*Display two colons */
     let none_show1 = document.getElementById("none-display-1");
@@ -18,9 +31,6 @@ function startCountdown() {
     none_show2.style.display = "inline-block";
 
     /*Count total number of seconds */
-    var h = parseInt(document.querySelector('#hour').value);
-    var m = parseInt(document.querySelector('#minute').value);
-    var s = parseInt(document.querySelector('#sec').value);
     var seconds = 0;
     if (isNaN(h))
         seconds += 0;
@@ -31,6 +41,8 @@ function startCountdown() {
     else
         seconds += parseInt(m) * 60;
     seconds += parseInt(s)
+
+    /*Then print the time repeatedly every one second until it reaches zero.*/
     printTime(seconds);
 }
 
@@ -47,10 +59,12 @@ function printTime(s) {
 
         if (s == 0) {
             clearInterval(timerId); //To stop further calls, we should call clearInterval(timerId).
-            /*.., and then play the audio */
+
+            /*.., and then play the audio and show Timer Off icon*/
             document.querySelector('#audio').setAttribute("src", "https://github.com/zerefshadow/Portfolio-Kha/blob/main/musics/ghibli.mp3?raw=true");
             document.querySelector('#audio').setAttribute("autoplay", "");
             document.querySelector('#audio').setAttribute("controls", "");
+            document.getElementById('icon').setAttribute("href", "https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/timer_off/default/48px.svg");
         }
         s--;
     }, 1000); //The delay before run, in milliseconds (1000 ms = 1 second), by default 0.
