@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nunito:wght@300&family=Open+Sans:wght@300&family=Pangolin&family=Poppins&family=Ubuntu:wght@300&display=swap');
+
+.none-display {
+    display: none;
+}
+
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
+body {
+    color: blue;
+    font-family: 'Indie Flower', cursive;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    font-size: 7.5vh;
+    font-weight: bolder;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 6.5vh;
+}
+
+input,
+button {
+    font-size: larger;
+    text-align: center;
+    border-radius: 2.5cm;
+    width: 18vw;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    font-size: xx-large;
+}
+
+.timer>p {
+    font-family: 'Indie Flower', cursive;
+    font-size: 10vh;
+    font-weight: bolder;
+}
