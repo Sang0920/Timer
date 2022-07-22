@@ -1,61 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Do The Sang">
     <title id="title">Timer</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nunito:wght@300&family=Open+Sans:wght@300&family=Pangolin&family=Poppins&family=Ubuntu:wght@300&display=swap');
-        .none-display{
-            display: none;
-        }
-        video{
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1;
-        }
-        body{
-            color: blue;
-            font-family: 'Indie Flower', cursive;
-        }
-        label{
-            display: flex;
-            justify-content: center;
-            margin: auto;
-            font-size: 7.5vh;
-            font-weight: bolder;
-        }
-        form{
-            display: flex;
-            justify-content: center;
-            flex-direction: row;
-            height: 6.5vh;
-        }
-        input, button{
-            font-size: larger;
-            text-align: center;
-            border-radius: 2.5cm;
-            width: 18vw;
-        }
-        .timer{
-            display: flex;
-            flex-direction: column;
-            font-size: xx-large;
-        }
-        .timer > p{
-            font-family: 'Indie Flower', cursive;
-            font-size: 10vh;
-            font-weight: bolder;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-    <video autoplay muted loop src="https://github.com/zerefshadow/Portfolio-Kha/blob/main/videos/anime4.mp4?raw=true"></video>
+    <video autoplay muted loop
+        src="https://github.com/zerefshadow/Portfolio-Kha/blob/main/videos/anime4.mp4?raw=true"></video>
     <label for="appt">Choose a time for countdown</label>
     <form action="" id="form">
         <input type="number" id="hour" name="hour" min="0" placeholder="Hour">
@@ -78,54 +35,7 @@
             </p>
         </section>
     </center>
-
 </body>
-<script>
-    var form = document.getElementById("form");
-    function handleForm(event) { event.preventDefault(); } 
-    form.addEventListener('submit', handleForm);
-    let t = document.querySelector('.timer')
+<script src="./script.js"></script>
 
-    function startCountdown(){
-        document.querySelector('#audio').setAttribute("src", "")
-        document.querySelector('#audio').removeAttribute("autoplay")
-        document.querySelector('#audio').removeAttribute("controls")
-        var h = parseInt(document.querySelector('#hour').value)
-        var m = parseInt(document.querySelector('#minute').value)
-        var s = parseInt(document.querySelector('#sec').value)
-        let none_show1 = document.getElementById("none-display-1")
-        let none_show2 = document.getElementById("none-display-2")
-        none_show1.style.display = "inline-block"
-        none_show2.style.display = "inline-block"
-        var seconds = 0
-        if (isNaN(h))
-            seconds += 0
-        else
-            seconds += parseInt(h)*60*60
-        if (isNaN(m))
-            seconds += 0
-        else
-            seconds += parseInt(m)*60
-        seconds += parseInt(s)
-        printTime(seconds)
-    }
-
-    function printTime(s) {
-    let timerId = setInterval(function() {
-            let tmp = s;
-            let _h = t.querySelector('.hour').innerHTML = parseInt(tmp/3600)
-            tmp%=3600
-            let _m = t.querySelector('.minute').innerHTML = parseInt(tmp/60)
-            let _s = t.querySelector('.second').innerHTML = (tmp%=60)
-            document.querySelector('#title').innerHTML = _h+"h"+_m+"m"+_s+"s"
-            if (s == 0) {
-                clearInterval(timerId);
-                document.querySelector('#audio').setAttribute("src", "https://github.com/zerefshadow/Portfolio-Kha/blob/main/musics/ghibli.mp3?raw=true")
-                document.querySelector('#audio').setAttribute("autoplay", "")
-                document.querySelector('#audio').setAttribute("controls", "")
-            }
-            s--;
-        }, 1000);
-    }
-</script>
 </html>
