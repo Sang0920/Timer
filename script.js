@@ -6,10 +6,11 @@ function handleForm(event) {
 form.addEventListener('submit', handleForm);
 
 let p = null;
-number_of_click = 0;
+number_of_clicks = 0;
 
 function startCountdown() {
-    number_of_click += 1;
+    reset = true;
+    number_of_clicks += 1;
 
     /*Hide audio controls, source, and autoplay attributes until countdonwn time's finish.*/
     document.querySelector('#audio').setAttribute("src", "");
@@ -70,12 +71,13 @@ class Print {
         /**setInterval allows us to run a function repeatedly, starting after the interval of time, then repeating continuously at that interval. */
         let timerId = setInterval(function () {
             /**When user click Start button more than twice, we stop this (previous) Interval and start another Interval */
-            if (number_of_click == 2) {
-                number_of_click -= 1;
+            if (number_of_clicks > 1) {
+                number_of_clicks -= 1;
                 clearInterval(timerId) //To stop further calls, we should call clearInterval(timerId).
             }
 
             if (s == 0) {
+                number_of_clicks = 0; //When countdown is done, we reset number_of_click equal to zero.
                 clearInterval(timerId);
 
                 /*.., and then play the audio and show Timer Off icon*/
