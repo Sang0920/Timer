@@ -40,8 +40,11 @@ function startCountdown() {
         seconds += 0;
     else
         seconds += parseInt(m) * 60;
-    seconds += parseInt(s)
-
+    if(isNaN(s))
+        seconds += 0;
+    else 
+        seconds += parseInt(s)
+    
     /*Then print the time repeatedly every one second until it reaches zero.*/
     printTime(seconds);
 }
